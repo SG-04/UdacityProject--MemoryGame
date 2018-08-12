@@ -76,8 +76,8 @@ function shuffle(array) {
     return array;
 }
 
-    // Randomizes cards on board and updates card HTML
-    function updateCards() {
+// Randomizes cards on board and updates card HTML
+function updateCards() {
     deck = shuffle(deck);
     var index = 0;
     $.each($(".card i"), function(){
@@ -85,21 +85,30 @@ function shuffle(array) {
       index++;
     });
     resetTimer();
-    };
+};
 
-    // Removes last start from remaining stars, updates modal HTML
-    function removeStar() {
+// Removes last start from remaining stars, updates modal HTML
+function removeStar() {
     $(".fa-star").last().attr("class", "fa fa-star-o");
     numStars--;
     $(".num-stars").text(String(numStars));
     };
 
-    // Restores star icons to 3 stars, updates modal HTML
-    function resetStars() {
+// Restores star icons to 3 stars, updates modal HTML
+function resetStars() {
     $(".fa-star-o").attr("class", "fa fa-star");
     numStars = 3;
     $(".num-stars").text(String(numStars));
-    };
+};
+
+// Updates number of moves in the HTML, removes star is necessary based on difficulty variables
+function updateMoveCounter() {
+    $(".moves").text(moveCounter);
+
+    if (moveCounter === hard || moveCounter === medium) {
+        removeStar();
+    }
+};
 
 
 
