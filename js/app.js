@@ -111,6 +111,42 @@ function updateMoveCounter() {
 };
 
 
+// Checks if card is a valid move (if it not currently matched or open)
+function isValid(card) {
+    return !(card.hasClass("open") || card.hasClass("match"));
+};
+
+// Returns whether or not currently open cards match
+function checkMatch() {
+    if (open[0].children().attr("class")===open[1].children().attr("class")) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+// Returns win condition
+function hasWon() {
+    if (matched === 16) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+// Sets currently open cards to the match state, checks win condition
+var setMatch = function() {
+    open.forEach(function(card) {
+        card.addClass("match");
+    });
+    open = [];
+    matched += 2;
+
+    if (hasWon()) {
+        clearInterval(timer.clearTime);
+        showModal();
+    }
+};
 
 
 /*
