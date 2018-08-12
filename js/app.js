@@ -165,6 +165,11 @@ function openCard(card) {
     }
 };
 
+// Toggles win modal on
+function showModal() {
+    modal.css("display", "block");
+};
+
 /*
  * Event callback functions
  */
