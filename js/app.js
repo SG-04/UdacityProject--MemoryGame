@@ -25,6 +25,58 @@ function shuffle(array) {
     return array;
 }
 
+var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor",
+           "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf",
+           "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
+
+// Game state variables
+var open = [];
+var matched = 0;
+var moveCounter = 0;
+var numStars = 3;
+var timer = {
+    seconds: 0,
+    minutes: 0,
+    clearTime: -1
+};
+
+// max number of moves for each star
+var hard = 15;
+var medium = 20;
+
+var modal = $("#win-modal");
+
+// Interval function to be called every second, increments timer and updates HTML
+var startTimer = function() {
+    if (timer.seconds === 59) {
+        timer.minutes++;
+        timer.seconds = 0;
+    } else {
+        timer.seconds++;
+    }
+
+    // Ensure that single digit seconds are preceded with a 0
+    var formattedSec = "0";
+    if (timer.seconds < 10) {
+        formattedSec += timer.seconds
+    } else {
+        formattedSec = String(timer.seconds);
+    }
+
+    var time = String(timer.minutes) + ":" + formattedSec;
+    $(".timer").text(time);
+    };
+// Resets timer state and restarts timer
+    function resetTimer() {
+    clearInterval(timer.clearTime);
+    timer.seconds = 0;
+    timer.minutes = 0;
+    $(".timer").text("0:00");
+
+    timer.clearTime = setInterval(startTimer, 1000);
+    };
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
