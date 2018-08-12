@@ -19,3 +19,5 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+### Note
+* The website is available for viewing [here](https://sg-04.github.io/UdacityProject-MemoryGame/)
