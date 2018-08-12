@@ -29,5 +29,3 @@ cards two at a time to match the pairs. The game ends when all pairs are reveale
 3 stars = 14 moves or less  
 2 stars = 19 moves or less  
 1 star = 20 moves or more
-### Note
-* The website is available for viewing [here](https://sg-04.github.io/UdacityProject-MemoryGame/)
