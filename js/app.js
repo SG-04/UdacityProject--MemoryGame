@@ -40,29 +40,29 @@ var startTimer = function() {
         timer.seconds++;
     }
 
-    // Ensure that single digit seconds are preceded with a 0
-    var formattedSec = "0";
-    if (timer.seconds < 10) {
+// Ensure that single digit seconds are preceded with a 0
+var formattedSec = "0";
+if (timer.seconds < 10) {
         formattedSec += timer.seconds
-    } else {
+} else {
         formattedSec = String(timer.seconds);
-    }
+}
 
-    var time = String(timer.minutes) + ":" + formattedSec;
+var time = String(timer.minutes) + ":" + formattedSec;
     $(".timer").text(time);
-    };
+};
+
 // Resets timer state and restarts timer
-    function resetTimer() {
+function resetTimer() {
     clearInterval(timer.clearTime);
     timer.seconds = 0;
     timer.minutes = 0;
     $(".timer").text("0:00");
 
     timer.clearTime = setInterval(startTimer, 1000);
-    };
+};
 
-
-    // Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
