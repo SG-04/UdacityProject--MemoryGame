@@ -147,7 +147,23 @@ var setMatch = function() {
         showModal();
     }
 };
+// Sets currently open cards back to default state
+var resetOpen = function() {
+    open.forEach(function(card) {
+        card.toggleClass("open");
+        card.toggleClass("show");
+    });
+    open = [];
+};
 
+// Sets selected card to the open and shown state
+function openCard(card) {
+    if (!card.hasClass("open")) {
+        card.addClass("open");
+        card.addClass("show");
+        open.push(card);
+    }
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
