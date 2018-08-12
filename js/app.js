@@ -166,6 +166,62 @@ function openCard(card) {
 };
 
 /*
+ * Event callback functions
+ */
+
+// Resets all game state variables and resets all required HTML to default state
+var resetGame = function() {
+    open = [];
+    matched = 0;
+    moveCounter = 0;
+    resetTimer();
+    updateMoveCounter();
+    $(".card").attr("class", "card");
+    updateCards();
+    resetStars();
+};
+
+// Handles primary game logic of game
+var onClick = function() {
+    if (isValid( $(this) )) {
+
+        if (open.length === 0) {
+            openCard( $(this) );
+
+        } else if (open.length === 1) {
+            openCard( $(this) );
+            moveCounter++;
+            updateMoveCounter();
+
+            if (checkMatch()) {
+                setTimeout(setMatch, 300);
+
+            } else {
+                setTimeout(resetOpen, 700);
+
+            }
+        }
+    }
+};
+
+// Resets game state and toggles win modal display off
+var playAgain = function() {
+    resetGame();
+    modal.css("display", "none");
+};
+
+/*
+ * Initalize event listeners
+ */
+
+$(".card").click(onClick);
+$(".restart").click(resetGame);
+$(".play-again").click(playAgain);
+
+// Provides a randomized game board on page load
+$(updateCards);
+
+/*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
