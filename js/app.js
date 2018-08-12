@@ -10,21 +10,6 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
 var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor",
            "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf",
            "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
@@ -75,6 +60,33 @@ var startTimer = function() {
 
     timer.clearTime = setInterval(startTimer, 1000);
     };
+
+
+    // Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+    // Randomizes cards on board and updates card HTML
+    function updateCards() {
+    deck = shuffle(deck);
+    var index = 0;
+    $.each($(".card i"), function(){
+      $(this).attr("class", "fa " + deck[index]);
+      index++;
+    });
+    resetTimer();
+    };
+
 
 
 
